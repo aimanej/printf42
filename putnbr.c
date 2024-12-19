@@ -6,7 +6,7 @@
 /*   By: aijadid <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:05:09 by aijadid           #+#    #+#             */
-/*   Updated: 2024/12/11 18:17:09 by aijadid          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:11:56 by aijadid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,24 @@ int	ft_putnbr(int n)
 	if (n > 9)
 	{
 		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
 	}
-	else
-		ft_putchar(n + 48);
+	ft_putchar((n % 10) + 48);
 	return (i);
+}
+
+unsigned long     ft_putadd(unsigned long n)
+{
+    int i;
+	unsigned long o;
+	char base[] = "0123456789abcdef";
+
+        i = intlen(n);
+	if (n >= 16)
+        {
+                ft_putadd(n / 16);
+        }
+ 	ft_putchar(base[n % 16]);
+
+        return (i);
 }
 
