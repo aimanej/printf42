@@ -13,28 +13,17 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-
-void	ft_putchar(char c)
+int	ft_putu(unsigned int n)
 {
-	write(1, &c, 1);
-}
+	int i;
 
-int	intlen(int n)
-{
-	int	t;
-
-	t = 0;
-	if (n < 0)
+	i = intlen(n);
+	if (n > 9)
 	{
-		t += 1;
-		n *= -1;
+		ft_putnbr(n / 10);
 	}
-	while (n > 0)
-	{
-		n = n / 10;
-		t++;
-	}
-	return (t);
+	ft_putchar((n % 10) + 48);
+	return (i);
 }
 
 int	ft_putnbr(int n)
@@ -66,7 +55,9 @@ unsigned long     ft_putadd(unsigned long n)
 	unsigned long o;
 	char base[] = "0123456789abcdef";
 
-        i = intlen(n);
+    i = intlen(n);
+	ft_putchar('0');
+	ft_putchar('x');
 	if (n >= 16)
         {
                 ft_putadd(n / 16);
@@ -76,3 +67,32 @@ unsigned long     ft_putadd(unsigned long n)
         return (i);
 }
 
+unsigned int    ft_putx(unsigned int n)
+{
+    int i;
+	char base[] = "0123456789abcdef";
+
+        i = intlen(n);
+	if (n >= 16)
+        {
+                ft_putx(n / 16);
+        }
+    ft_putchar(base[n % 16]);
+
+        return (i);
+}
+
+unsigned int    ft_putX(unsigned int n)
+{
+    int i;
+    char base[] = "0123456789ABCDEF";
+
+        i = intlen(n);
+	if (n >= 16)
+        {
+                ft_putX(n / 16);
+        }
+    ft_putchar(base[n % 16]);
+
+        return (i);
+}

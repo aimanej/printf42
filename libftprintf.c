@@ -15,10 +15,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void    ft_putchar(char c);
-int     intlen(int n);
-int     ft_putnbr(int n);
-
 int ft_printf(const char *fixed, ...)
 {
 	va_list args;
@@ -42,23 +38,30 @@ int ft_printf(const char *fixed, ...)
 		t++;
 		if(fixed[t] == 'd' || fixed[t] == 'i')
 		{
-			i = va_arg(args, int);
-			r += ft_putnbr(i);
+			ft_putnbr(va_arg(args, int));
 		}
 		if (fixed[t] == 'c')
 		{
-			i = va_arg(args, int);
-			ft_putchar(i);
-			r += 1;
+			ft_putchar(va_arg(args, int));
 		}
 		if (fixed[t] == 'p')
 		{
-			p = va_arg(args, unsigned long);
-		//	printf("'%p'\n", (void *)p);
-			ft_putchar('0');
-			ft_putchar('x');
-			ft_putadd(p);
-			r += 1;
+			ft_putadd(va_arg(args, unsigned long));
+		}
+		if(fixed[t] == 'x' || fixed[t] == 'X')
+        {
+            if(fixed[t] == 'x')
+                ft_putx(va_arg(args, unsigned int));
+            else
+                ft_putX(va_arg(args, unsigned int));
+		}
+		if (fixed[t] == 's')
+		{
+			ft_putstr(va_arg(args, char *));
+		}
+		if (fixed[t] == 'u')
+		{
+			ft_putu(va_arg(args, unsigned int));
 		}
 		t++;
 	}
@@ -70,6 +73,7 @@ int main()
 	int t = 500;
 	char u = 'a';
 	int *p = &t;
-	ft_printf("and i wonder %c ifyou know : %d what it means %p", u, t, p);
-	printf("\n\nand i wonder %c ifyou know : %d what it means %p", u, t, p);
+	char str[] = "aim,ane jadid";
+	ft_printf(" %c : %d  %p, %x, %X, %s, %u", u, t, p, t, t, str, t);
+	printf("\n %c  : %d , %p, %x, %X, %s, %u", u, t, p, t, t, str, t);
 }

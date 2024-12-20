@@ -13,10 +13,14 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-void    ft_putchar_fd(char c);
+void    ft_putchar(char c);
 int     intlen(int n);
 int     ft_putnbr(int n);
 int ft_printf(const char *fixed, ...);
 unsigned long     ft_putadd(unsigned long n);
+unsigned int    ft_putx(unsigned int n);
+unsigned int    ft_putX(unsigned int n);
+void ft_putstr(char *str);
+int	ft_putu(unsigned int n);
 
 # endif

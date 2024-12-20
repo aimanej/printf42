@@ -177,5 +177,5 @@ int main()
 	char u = 'a';
 	int *p = &t;
 	ft_printf(" %c  : %d   %p  %x,  %X", u, t, p, t, t);
-	printf("\n\nand i wonder %c ifyou know : %d what it means %p, %x", u, t, p, t, t);
+	printf("\n %c : %d  %p, %x, %X", u, t, p, t, t);
 }
