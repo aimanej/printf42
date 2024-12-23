@@ -15,6 +15,30 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
+void   checker(char c , va_list *args, int *r)
+{
+		if(c == 'd' || c == 'i')
+			*r += ft_putnbr(va_arg(*args, int));
+		if (c == 'c')
+			*r += ft_putchar(va_arg(*args, int));
+		if (c == 'p')
+		{
+			*r += ft_putchar('0');
+			*r += ft_putchar('x');
+			*r += ft_putadd(va_arg(*args, unsigned long));
+		}
+		if(c == 'x')
+          *r += ft_putx(va_arg(*args, unsigned int));
+        if(c == 'X')
+            *r += ft_putX(va_arg(*args, unsigned int));
+		if (c == 's')
+			*r += ft_putstr(va_arg(*args, char *));
+		if (c == 'u')
+			*r += ft_putu(va_arg(*args, unsigned int));
+		if (c == 37)
+			ft_putchar('%');
+}
+
 int ft_printf(const char *fixed, ...)
 {
 	va_list args;
@@ -33,27 +57,7 @@ int ft_printf(const char *fixed, ...)
 			t++;
 		}
 		t++;
-		if(fixed[t] == 'd' || fixed[t] == 'i')
-			r += ft_putnbr(va_arg(args, int));
-		if (fixed[t] == 'c')
-			r += ft_putchar(va_arg(args, int));
-		if (fixed[t] == 'p')
-		{
-
-			r += ft_putchar('0');
-			r += ft_putchar('x');
-			r += ft_putadd(va_arg(args, unsigned long));
-			
-		}
-		if(fixed[t] == 'x')
-          r += ft_putx(va_arg(args, unsigned int));
-		   
-        if(fixed[t] == 'X')
-            r += ft_putX(va_arg(args, unsigned int));
-		if (fixed[t] == 's')
-			r += ft_putstr(va_arg(args, char *));
-		if (fixed[t] == 'u')
-			r += ft_putu(va_arg(args, unsigned int));
+		checker(fixed[t], &args, &r);
 		t++;
 	}
 	va_end(args);
@@ -66,7 +70,7 @@ int main()
 	char u = 'a';
 	int *p = &t;
 	char str[] = "aim,ane jadid";
- 	printf("\n %d\n", ft_printf("ride to it %p,  %c, %d, %s, %x, %X, %u", p, u, t, str, t, l, t));
+ 	printf("\n %d\n", ft_printf("ride to it %p,  %c, %d, %s, %x, %X, %u, %%", p, u, t, str, t, l, t));
 	printf("\n %d\n", printf("ride to it %p,  %c, %d, %s, %x, %X, %u", p, u, t, str, t, l, t));
 
 }
