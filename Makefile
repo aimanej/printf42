@@ -2,9 +2,9 @@ cc = gcc
 
 CFLAGS = -Werror -Wextra -Wall
 
-NAME = libft.a
+NAME = printf.a
 
-SRCS = 
+SRCS = libftprintf.c putnbr.c strs.c
 
 all: $(NAME)
 
