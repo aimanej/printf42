@@ -6,7 +6,7 @@
 /*   By: aijadid <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:05:09 by aijadid           #+#    #+#             */
-/*   Updated: 2024/12/12 16:11:56 by aijadid          ###   ########.fr       */
+/*   Updated: 2024/12/24 17:18:29 by aijadid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,70 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_putu(unsigned int n)
+void	ft_putu(unsigned int n, int *r)
 {
 	int i;
 
 	i = addlen(n);
 	if (n > 9)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr((n / 10), r);
 	}
-	ft_putchar((n % 10) + 48);
-	return (i);
+	
+	ft_putchar(((n % 10) + 48), r);
+
 }
 
-int	ft_putnbr(int n)
+void	ft_putnbr(int n, int *r)
 {
-	int i;
-
-	i = intlen(n);
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		i += 11;
-		return i;
+		(*r)+= 11;
 	}
 	if (n < 0)
 	{
-		ft_putchar('-');
+		ft_putchar('-', r);
 		n *= -1;
 	}
 	if (n > 9)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr((n / 10), r);
+		ft_putnbr((n % 10), r);
 	}
-	ft_putchar((n % 10) + 48);
-	return (i);
+	else
+		ft_putchar((n + 48), r);
 }
 
-int   ft_putadd(unsigned long n)
+void   ft_putadd(unsigned long n, int *r)
 {
-    int i;
 	char base[] = "0123456789abcdef";
 
-    i = addlen(n);
-	
 	if (n >= 16)
         {
-                ft_putadd(n / 16);
+                ft_putadd((n / 16), r);
         }
- 	ft_putchar(base[n % 16]);
-        return (i);
+ 	ft_putchar(base[n % 16], r);
 }
 
-int    ft_putx(unsigned int n)
+void   ft_putx(unsigned int n, int *r)
 {
-    int i;
+
 	char base[] = "0123456789abcdef";
-
-    i = addlen(n);
 	if (n >= 16)
         {
-                ft_putx(n / 16);
+                ft_putx((n / 16), r);
         }
-    ft_putchar(base[n % 16]);
-        return (i);
+    ft_putchar(base[n % 16], r);
 }
 
-int    ft_putX(unsigned int n)
+void   ft_putX(unsigned int n, int *r)
 {
-    int i;
     char base2[] = "0123456789ABCDEF";
 
-    i = addlen(n);
 	if (n >= 16)
         {
-                ft_putX(n / 16);
+                ft_putX((n / 16), r);
         }
-    ft_putchar(base2[n % 16]);
-        return (i);
+    ft_putchar(base2[n % 16], r);
 }

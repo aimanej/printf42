@@ -2,14 +2,16 @@ cc = gcc
 
 CFLAGS = -Werror -Wextra -Wall
 
-NAME = printf.a
+NAME = libftprintf.a
 
-SRCS = libftprintf.c putnbr.c strs.c
+SRCS = ft_printf.c putnbr.c strs.c
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) rcs $@ $^
+	ar rcs $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
