@@ -64,7 +64,7 @@ void ft_putstr(char *str, int *r)
 	if (!str)
 	{
 		write (1, "(NULL)", 6);
-		r += 6;
+		(*r) += 6;
 	}
     while(*str)
     {

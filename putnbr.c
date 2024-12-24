@@ -16,9 +16,11 @@
 
 void	ft_putu(unsigned int n, int *r)
 {
-	int i;
-
-	i = addlen(n);
+	 if (n == 0) 
+	{
+        ft_putchar('0', r);
+        return;
+    }
 	if (n > 9)
 	{
 		ft_putnbr((n / 10), r);
@@ -34,6 +36,7 @@ void	ft_putnbr(int n, int *r)
 	{
 		write(1, "-2147483648", 11);
 		(*r)+= 11;
+		return;
 	}
 	if (n < 0)
 	{
