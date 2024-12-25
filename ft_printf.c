@@ -23,8 +23,6 @@ void   checker(char c , va_list *args, int *r)
 			ft_putchar(va_arg(*args, int), r);
 		if (c == 'p')
 		{
-			ft_putchar('0', r);
-			ft_putchar('x', r);
 			ft_putadd(va_arg(*args, unsigned long), r);
 		}
 		if(c == 'x')
@@ -69,10 +67,10 @@ int ft_printf(const char *fixed, ...)
 	va_end(args);
 	return r;
 }
-
+/*
 int main()
 {
- 	printf("%d", ft_printf("%d", -2147483648));
- 	printf("\n%d", -2147483648);
+ 	printf("%d", ft_printf("%d", -2147));
+ 	printf("\n%d", -21474);
 //	printf("\n%d is great", t);
-}
+}*/

@@ -2,7 +2,7 @@ cc = gcc
 
 CFLAGS = -Werror -Wextra -Wall
 
-NAME = libftprintf.a
+NAME = printf.a
 
 SRCS = ft_printf.c putnbr.c strs.c
 

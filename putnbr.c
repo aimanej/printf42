@@ -55,12 +55,25 @@ void	ft_putnbr(int n, int *r)
 void   ft_putadd(unsigned long n, int *r)
 {
 	char base[] = "0123456789abcdef";
-
-	if (n >= 16)
+	char s[19];
+	int i;
+	i = 0;
+		
+	if(n == 0)
+	{
+		ft_putstr("(nil)", r);
+		return ;
+	}
+	write(1, "0x", 2);
+	(*r) +=2;
+	while (n != 0)
         {
-                ft_putadd((n / 16), r);
+                s[i] = base[n % 16];
+		n /= 16;
+		i++;
         }
- 	ft_putchar(base[n % 16], r);
+	while(i--)
+ 		ft_putchar(s[i], r);
 }
 
 void   ft_putx(unsigned int n, int *r)
